@@ -56,19 +56,24 @@ export class AuthService {
 
     }
 
-    signToken(
+    async signToken(
         userId:number,
         email:string
-    ) : Promise<string>{
+    ) : Promise<{access_token :string}>{
         const payload = {
             sub: userId,
             email
         }
 
         const secret = this.config.get('JWT_SECRET')
-        return this.jwt.signAsync(payload, {
+        const token = await this.jwt.signAsync(payload, {
             expiresIn:'15m',
             secret: secret
-        })
+        });
+
+        return {
+            access_token: token,
+        }
+
     }
 }
