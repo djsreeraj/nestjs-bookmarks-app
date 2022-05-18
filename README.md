@@ -52,6 +52,10 @@ $ yarn db:dev:restart
 
 $ yarn prisma:dev:deploy
 
+
+# test
+$ yarn test:e2e
+
 ```
 
 
